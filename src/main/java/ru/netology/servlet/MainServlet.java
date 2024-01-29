@@ -11,6 +11,8 @@ import java.io.IOException;
 
 public class MainServlet extends HttpServlet {
   private PostController controller;
+  private static final String PATH_ALL_POSTS = "/api/posts";
+  private static final String PATH_POST_BY_ID = "/api/posts/\\d+";
 
   @Override
   public void init() {
@@ -26,21 +28,21 @@ public class MainServlet extends HttpServlet {
       final var path = req.getRequestURI();
       final var method = req.getMethod();
       // primitive routing
-      if (method.equals("GET") && path.equals("/api/posts")) {
+      if (method.equals("GET") && path.equals(PATH_ALL_POSTS)) {
         controller.all(resp);
         return;
       }
-      if (method.equals("GET") && path.matches("/api/posts/\\d+")) {
+      if (method.equals("GET") && path.matches(PATH_POST_BY_ID)) {
         // easy way
         final var id = Long.parseLong(path.substring(path.lastIndexOf("/") + 1));
         controller.getById(id, resp);
         return;
       }
-      if (method.equals("POST") && path.equals("/api/posts")) {
+      if (method.equals("POST") && path.equals(PATH_ALL_POSTS)) {
         controller.save(req.getReader(), resp);
         return;
       }
-      if (method.equals("DELETE") && path.matches("/api/posts/\\d+")) {
+      if (method.equals("DELETE") && path.matches(PATH_POST_BY_ID)) {
         // easy way
         final var id = Long.parseLong(path.substring(path.lastIndexOf("/") + 1));
         controller.removeById(id, resp);
