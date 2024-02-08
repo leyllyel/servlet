@@ -16,7 +16,6 @@ public class PostController {
   private static final Gson gson = new Gson();
   private final PostService service;
 
-  @Autowired
   public PostController(PostService service) {
     this.service = service;
   }
