@@ -16,7 +16,7 @@ public class MainServlet extends HttpServlet {
   private PostController controller;
   private static final String PATH_ALL_POSTS = "/api/posts";
   private static final String PATH_POST_BY_ID = "/api/posts/\\d+";
-  
+
     @Override
     public void init() {
         ApplicationContext context = new AnnotationConfigApplicationContext();
