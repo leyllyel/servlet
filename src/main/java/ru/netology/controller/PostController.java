@@ -1,16 +1,11 @@
 package ru.netology.controller;
 
-import com.google.gson.Gson;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import ru.netology.model.Post;
 import ru.netology.service.PostService;
 
-import javax.servlet.http.HttpServletResponse;
-import java.io.IOException;
-import java.io.Reader;
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/posts")
@@ -27,7 +22,7 @@ public class PostController {
   }
 
   @GetMapping("/{id}")
-  public Post getById(@PathVariable long id) {
+  public Optional getById(@PathVariable long id) {
     return service.getById(id);
   }
 
